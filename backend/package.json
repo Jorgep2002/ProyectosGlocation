@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn --clear src/app.ts",
-    "build": "rimraf ./dist && tsc",
+    "build": "rimraf ./dist && tsc && mkdir -p dist/docs && cp -r src/docs/swagger.yaml dist/docs/",
     "start": "npm run build && node dist/app.js",
     "start:prod": "NODE_ENV=production node dist/app.js",
     "prisma:generate": "npx prisma generate",

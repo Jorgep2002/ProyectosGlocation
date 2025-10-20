@@ -4,7 +4,7 @@ import YAML from 'yamljs';
 import path from 'path';
 
 export const setupSwagger = (app: Express) => {
-  const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yml'));
+  const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
 
   
 
