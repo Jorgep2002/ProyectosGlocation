@@ -1,0 +1,26 @@
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Proyecto {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  descripcion String
+  estado      Estado   @default(EN_PROGRESO)
+  fechaInicio DateTime
+  fechaFin    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Estado {
+  EN_PROGRESO
+  FINALIZADO
+  PENDIENTE
+}
