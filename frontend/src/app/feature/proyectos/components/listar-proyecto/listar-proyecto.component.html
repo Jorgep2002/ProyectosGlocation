@@ -1,0 +1,41 @@
+<div class="list-card">
+  <h2 class="list-title">Proyectos Registrados ({{ projects.length }})</h2>
+
+  <div class="table-responsive">
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th class="col-descripcion">Descripción</th>
+          <th>Inicio</th>
+          <th class="col-fecha">Fin Estimada</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="projects.length === 0">
+          <td colspan="6" class="empty-row">No hay proyectos registrados aún.</td>
+        </tr>
+
+        <tr *ngFor="let project of projects">
+          <td data-label="Título">{{ project.nombre }}</td>
+          <td data-label="Descripción" class="col-descripcion">{{ project.descripcion | slice:0:50 }}...</td>
+          <td data-label="Inicio">{{ project.fechaInicio | date: 'dd/MM/yyyy' }}</td>
+          <td data-label="Fin Estimada" class="col-fecha">{{ project.fechaFin | date: 'dd/MM/yyyy' }}</td>
+          <td data-label="Estado">
+            <span class="status-badge" [ngClass]="project.estado | lowercase">
+              {{ project.estado }}
+            </span>
+          </td>
+          <td data-label="Acciones">
+            <div class="action-buttons">
+              <button class="btn btn-edit" (click)="editProject(project)">Editar</button>
+              <button class="btn btn-delete" (click)="deleteProject(project.id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

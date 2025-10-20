@@ -1,0 +1,87 @@
+$app-primary: #000000;
+$app-dark: #0d2243; // azul oscuro
+$app-gray: #666;
+$app-light-gray: #f5f5f5;
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background-color: $app-dark; // todo el fondo azul oscuro
+
+  header.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: $app-primary;
+    flex-shrink: 0;
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 1.5rem;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: background-color 0.3s;
+
+        &.active-link {
+          background-color: darken($app-primary, 15%);
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  /* router-outlet ahora ocupa todo el espacio flexible */
+  > :not(header):not(.app-footer) {
+    flex: 1 0 auto; // ocupar espacio restante
+    padding: 2rem;
+    background-color: $app-dark; 
+  }
+
+  footer.app-footer {
+    flex-shrink: 0;
+    background-color: $app-primary;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  header.app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    .nav-bar {
+      flex-direction: column;
+      width: 100%;
+
+      a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  > :not(header):not(.app-footer) {
+    padding: 1rem;
+  }
+}

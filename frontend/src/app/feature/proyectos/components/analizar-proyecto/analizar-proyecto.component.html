@@ -1,0 +1,14 @@
+<div class="analyze-card">
+  <h2 class="analyze-title">Resumen des Proyectos</h2>
+
+  <button class="refresh-btn" (click)="cargarResumen()" [disabled]="loading">
+    {{ loading ? 'Cargando...' : 'Actualizar Resumen' }}
+  </button>
+
+  <div *ngIf="loading" class="loading-text">Analizando proyectos, por favor espere...</div>
+  <div *ngIf="error" class="error-text">{{ error }}</div>
+
+  <div *ngIf="resumen" class="resumen-text">
+    {{ resumen }}
+  </div>
+</div>

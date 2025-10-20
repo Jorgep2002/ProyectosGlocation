@@ -1,0 +1,105 @@
+<div class="detail-edit-container" *ngIf="!loading; else loadingTemplate">
+  <h1 class="main-title">Detalle del Proyecto</h1>
+
+  <div *ngIf="errorMsg; else formTemplate">
+    <p class="error-msg">{{ errorMsg }}</p>
+  </div>
+
+  <ng-template #formTemplate>
+    <div class="form-card">
+      <h2 class="form-title">Editar Proyecto</h2>
+
+      <form #editForm="ngForm" (ngSubmit)="onSave(editForm)">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            [(ngModel)]="project.nombre"
+            required
+            #nombre="ngModel"
+          />
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="validation-error">
+            El nombre es obligatorio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            [(ngModel)]="project.descripcion"
+            rows="3"
+            required
+            #descripcion="ngModel"
+          ></textarea>
+          <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="validation-error">
+            La descripción es obligatoria.
+          </div>
+        </div>
+
+        <div class="date-group">
+          <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input
+              type="date"
+              id="fechaInicio"
+              name="fechaInicio"
+              [(ngModel)]="project.fechaInicio"
+              required
+              #fechaInicio="ngModel"
+            />
+            <div *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)" class="validation-error">
+              La fecha de inicio es obligatoria.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaFin">Fecha de Fin</label>
+            <input
+              type="date"
+              id="fechaFin"
+              name="fechaFin"
+              [(ngModel)]="project.fechaFin"
+              required
+              #fechaFin="ngModel"
+            />
+            <div *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)" class="validation-error">
+              La fecha de fin es obligatoria.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select
+            id="estado"
+            name="estado"
+            [(ngModel)]="project.estado"
+            required
+            #estado="ngModel"
+          >
+            <option value="" disabled>Seleccione un estado</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="EN_PROGRESO">En Progreso</option>
+            <option value="FINALIZADO">Finalizado</option>
+          </select>
+          <div *ngIf="estado.invalid && (estado.dirty || estado.touched)" class="validation-error">
+            El estado es obligatorio.
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" [disabled]="editForm.invalid" class="submit-button">Guardar Cambios</button>
+          <button type="button" class="submit-button btn-cancel" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>Cargando proyecto...</p>
+</ng-template>

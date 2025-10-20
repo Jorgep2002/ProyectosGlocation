@@ -34,7 +34,7 @@ services:
 
   # 🌐 Frontend (Angular)
   frontend:
-    build: ./frontend/proyectos-glocation
+    build: ./frontend
     container_name: angular_frontend
     restart: always
     ports:
